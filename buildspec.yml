@@ -3,16 +3,13 @@ version: 0.2
 phases:
   pre_build:
     commands:
-     - New-Item -ItemType Junction -Path C:\Src -Value $Env:CODEBUILD_SRC_DIR
-     - cd C:\Src  
-     - nuget.exe restore
+     - '.\.nuget restore .\WebApplicationSample.sln -PackagesDirectory 4.6.2'
   build:
     commands:
      - msbuild .\WebApplicationSample\WebApplicationSample.csproj /t:Package /p:DeployIisAppPath="Default Web Site"
   post_build:
     commands:
      - mkdir OutputPackage
-     - PowerShell Expand-Archive .\WebApplicationSample\obj\Debug\Package\WebApplicationSample.zip -DestinationPath .\OutputPackage
 artifacts:
   files:
    - '**/*'
