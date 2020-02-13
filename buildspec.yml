@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-     - '.\.nuget restore .\WebApplicationSample.sln -PackagesDirectory 4.6.2'
+     - '& .\.nuget restore .\WebApplicationSample.sln -PackagesDirectory 4.6.2'
   build:
     commands:
      - msbuild .\WebApplicationSample\WebApplicationSample.csproj /t:Package /p:DeployIisAppPath="Default Web Site"
